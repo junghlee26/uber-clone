@@ -26,6 +26,14 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        
+        if let email = FIRAuth.auth()?.currentUser?.email {
+            FIRDatabase.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childAdded) { (snapshot) in
+                self.uberHasBeenCalled = true
+                self.callUberButton.setTitle("Cancel Uber", for: .normal)
+                FIRDatabase.database().reference().child("RideRequests").removeAllObservers()
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -62,7 +70,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func logOutTapped(_ sender: Any) {
-        
+        try? FIRAuth.auth()?.signOut()
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
 
