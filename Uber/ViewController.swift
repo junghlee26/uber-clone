@@ -27,11 +27,38 @@ class ViewController: UIViewController {
     }
 
     @IBAction func topTapped(_ sender: Any) {
-        if signUpMode {
-            //sign up process
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            displayAlert(title: "Missing required information", message: "You must provide both email and password")
         } else {
-            //log in process
+            guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+            if signUpMode {
+                // Sign up
+                FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
+                    if error != nil {
+                        self.displayAlert(title: "Error", message: error!.localizedDescription)
+                    } else {
+                        print("Sign up success")
+                        self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                    }
+                })
+            } else {
+                // Log in
+                FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
+                    if error != nil {
+                        self.displayAlert(title: "Error", message: error!.localizedDescription)
+                    } else {
+                        print("Sign in success")
+                        self.performSegue(withIdentifier: "riderSegue", sender: nil)
+                    }
+                })
+            }
         }
+    }
+    
+    func displayAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func bottomTapped(_ sender: Any) {

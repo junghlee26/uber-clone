@@ -10,6 +10,6 @@ target 'Uber' do
   # Pods for Uber
   pod 'Firebase/Core', '3.16.0'
   pod 'Firebase/Auth'
-
+  pod 'Firebase/Database'
   
 end
