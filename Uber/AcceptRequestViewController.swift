@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseDatabase
 
 class AcceptRequestViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class AcceptRequestViewController: UIViewController {
     
     var requestEmail = ""
     var requestLocation = CLLocationCoordinate2D()
+    var driverLocation = CLLocationCoordinate2D()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,25 @@ class AcceptRequestViewController: UIViewController {
     }
     
     @IBAction func acceptTapped(_ sender: Any) {
+        // Update the ride request - driver's location
+        FIRDatabase.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: requestEmail).observe(.childAdded) { (snapshot) in
+            snapshot.ref.updateChildValues(["driverLat":self.driverLocation.latitude, "driverLon":self.driverLocation.longitude])
+            FIRDatabase.database().reference().child("RideRequests").removeAllObservers()
+        }
+        
+        // Give directions
+        let requestCLLocation = CLLocation(latitude: requestLocation.latitude, longitude: requestLocation.longitude)
+        CLGeocoder().reverseGeocodeLocation(requestCLLocation) { (placemarks, error) in
+            guard let placemarks = placemarks else { return }
+            if placemarks.count > 0 {
+                let placeMark = MKPlacemark(placemark: placemarks[0])
+                let mapItem = MKMapItem(placemark: placeMark)
+                mapItem.name = self.requestEmail
+                let options = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+                mapItem.openInMaps(launchOptions: options)
+            }
+        }
+        
         
     }
     

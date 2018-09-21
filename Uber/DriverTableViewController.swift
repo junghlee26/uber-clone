@@ -85,6 +85,7 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
                         let lon = rideRequestDictionary["lon"] as? Double {
                         acceptVC.requestEmail = email
                         acceptVC.requestLocation = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+                        acceptVC.driverLocation = driverLocation
                     }    
                 }
             }
