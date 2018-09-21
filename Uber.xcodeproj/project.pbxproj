@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A00CAA8C2155949E00022351 /* AcceptRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00CAA8B2155949E00022351 /* AcceptRequestViewController.swift */; };
 		A01FA6C42153147E0098937B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FA6C32153147E0098937B /* AppDelegate.swift */; };
 		A01FA6C62153147E0098937B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FA6C52153147E0098937B /* ViewController.swift */; };
 		A01FA6C92153147E0098937B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01FA6C72153147E0098937B /* Main.storyboard */; };
@@ -21,6 +22,7 @@
 /* Begin PBXFileReference section */
 		5FFF4A80E8AB697E284D1CAD /* Pods-Uber.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber.release.xcconfig"; path = "Pods/Target Support Files/Pods-Uber/Pods-Uber.release.xcconfig"; sourceTree = "<group>"; };
 		707F43844C545F4A73980692 /* Pods-Uber.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Uber.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Uber/Pods-Uber.debug.xcconfig"; sourceTree = "<group>"; };
+		A00CAA8B2155949E00022351 /* AcceptRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptRequestViewController.swift; sourceTree = "<group>"; };
 		A01FA6C02153147E0098937B /* Uber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Uber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01FA6C32153147E0098937B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A01FA6C52153147E0098937B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				A01FA6C52153147E0098937B /* ViewController.swift */,
 				A01FA6D9215446FB0098937B /* RiderViewController.swift */,
 				A01FA6DD215470650098937B /* DriverTableViewController.swift */,
+				A00CAA8B2155949E00022351 /* AcceptRequestViewController.swift */,
 				A01FA6C72153147E0098937B /* Main.storyboard */,
 				A01FA6CA215314800098937B /* Assets.xcassets */,
 				A01FA6CC215314800098937B /* LaunchScreen.storyboard */,
@@ -216,6 +219,7 @@
 				A01FA6DE215470650098937B /* DriverTableViewController.swift in Sources */,
 				A01FA6DA215446FB0098937B /* RiderViewController.swift in Sources */,
 				A01FA6C42153147E0098937B /* AppDelegate.swift in Sources */,
+				A00CAA8C2155949E00022351 /* AcceptRequestViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

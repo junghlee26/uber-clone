@@ -208,10 +208,53 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="Dfb-ph-tiP" kind="show" identifier="acceptSegue" id="bQx-CV-kVq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sEH-ja-ScQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1982" y="869"/>
+        </scene>
+        <!--Accept Request View Controller-->
+        <scene sceneID="m7A-LD-fA7">
+            <objects>
+                <viewController id="Dfb-ph-tiP" customClass="AcceptRequestViewController" customModule="Uber" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SAp-k7-06b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="8Je-MO-4VK">
+                                <rect key="frame" x="20" y="84" width="335" height="307"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8Je-MO-4VK" secondAttribute="height" multiplier="335:307" id="Bsu-28-1Ml"/>
+                                </constraints>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-9j-gcq">
+                                <rect key="frame" x="133" y="405" width="109" height="30"/>
+                                <state key="normal" title="Accept Request"/>
+                                <connections>
+                                    <action selector="acceptTapped:" destination="Dfb-ph-tiP" eventType="touchUpInside" id="mGg-KN-50b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8Je-MO-4VK" firstAttribute="top" secondItem="SZg-6Z-UaG" secondAttribute="top" constant="20" id="JTb-33-kyi"/>
+                            <constraint firstItem="SZg-6Z-UaG" firstAttribute="trailing" secondItem="8Je-MO-4VK" secondAttribute="trailing" constant="20" id="MPp-G6-1MT"/>
+                            <constraint firstItem="P3h-9j-gcq" firstAttribute="centerX" secondItem="SAp-k7-06b" secondAttribute="centerX" id="pdB-ch-YPE"/>
+                            <constraint firstItem="P3h-9j-gcq" firstAttribute="top" secondItem="8Je-MO-4VK" secondAttribute="bottom" constant="8" id="qHj-6E-ey9"/>
+                            <constraint firstItem="8Je-MO-4VK" firstAttribute="leading" secondItem="SZg-6Z-UaG" secondAttribute="leading" constant="20" id="ttB-3P-2lh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SZg-6Z-UaG"/>
+                    </view>
+                    <connections>
+                        <outlet property="map" destination="8Je-MO-4VK" id="kZs-O4-9P9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1VH-na-5it" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2936.8000000000002" y="868.51574212893559"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="240-tQ-4bE">
