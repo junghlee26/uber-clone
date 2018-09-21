@@ -14,6 +14,7 @@
 		A01FA6CE215314800098937B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A01FA6CC215314800098937B /* LaunchScreen.storyboard */; };
 		A01FA6D82154022F0098937B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A01FA6D72154022F0098937B /* GoogleService-Info.plist */; };
 		A01FA6DA215446FB0098937B /* RiderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FA6D9215446FB0098937B /* RiderViewController.swift */; };
+		A01FA6DE215470650098937B /* DriverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01FA6DD215470650098937B /* DriverTableViewController.swift */; };
 		FE6BD90742B824B7D2DECC82 /* Pods_Uber.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC01C0F4D041B15DCDF513CC /* Pods_Uber.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		A01FA6CF215314800098937B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01FA6D72154022F0098937B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A01FA6D9215446FB0098937B /* RiderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiderViewController.swift; sourceTree = "<group>"; };
+		A01FA6DD215470650098937B /* DriverTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverTableViewController.swift; sourceTree = "<group>"; };
 		EC01C0F4D041B15DCDF513CC /* Pods_Uber.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Uber.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -83,9 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				A01FA6C32153147E0098937B /* AppDelegate.swift */,
-				A01FA6C72153147E0098937B /* Main.storyboard */,
 				A01FA6C52153147E0098937B /* ViewController.swift */,
 				A01FA6D9215446FB0098937B /* RiderViewController.swift */,
+				A01FA6DD215470650098937B /* DriverTableViewController.swift */,
+				A01FA6C72153147E0098937B /* Main.storyboard */,
 				A01FA6CA215314800098937B /* Assets.xcassets */,
 				A01FA6CC215314800098937B /* LaunchScreen.storyboard */,
 				A01FA6CF215314800098937B /* Info.plist */,
@@ -210,6 +213,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A01FA6C62153147E0098937B /* ViewController.swift in Sources */,
+				A01FA6DE215470650098937B /* DriverTableViewController.swift in Sources */,
 				A01FA6DA215446FB0098937B /* RiderViewController.swift in Sources */,
 				A01FA6C42153147E0098937B /* AppDelegate.swift in Sources */,
 			);
