@@ -25,9 +25,17 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         
-        FIRDatabase.database().reference().child("RideRequests").observe(.childAdded) { (snapshopt) in
-            self.rideRequest.append(snapshopt)
-            self.tableView.reloadData()
+        FIRDatabase.database().reference().child("RideRequests").observe(.childAdded) { (snapshot) in
+            if let rideRequestDictionary = snapshot.value as? [String:AnyObject] {
+                if let driverLat = rideRequestDictionary["driverLat"] as? Double,
+                    let driverLon = rideRequestDictionary["driverLon"] as? Double {
+                    
+                } else {
+                    self.rideRequest.append(snapshot)
+                    self.tableView.reloadData()
+                }
+            }
+
         }
         
         Timer.scheduledTimer(withTimeInterval: 2, repeats: true) { (timer) in
