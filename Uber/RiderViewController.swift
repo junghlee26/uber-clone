@@ -51,23 +51,43 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
     func displayDriverAndRider() {
         let driverCLLocation = CLLocation(latitude: driverLocation.latitude, longitude: driverLocation.longitude)
         let riderCLLocation = CLLocation(latitude: userLocation.latitude, longitude: userLocation.longitude)
-        let distance = driverCLLocation.distance(from: riderCLLocation)
+        let distance = driverCLLocation.distance(from: riderCLLocation) / 1000
         let roundedDistance = round(distance * 100) / 100
         callUberButton.setTitle("Your Uber driver is \(roundedDistance)km away.", for: .normal)
+        map.removeAnnotations(map.annotations)
         
+        let latDelta = abs(driverLocation.latitude - userLocation.latitude) / 10000
+        let lonDelta = abs(driverLocation.longitude - userLocation.latitude) / 10000 
+        let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta))
+        map.setRegion(region, animated: true)
+        
+        let riderAnno = MKPointAnnotation()
+        riderAnno.coordinate = userLocation
+        riderAnno.title = "Your Location"
+        map.addAnnotation(riderAnno)
+        
+        let driverAnno = MKPointAnnotation()
+        driverAnno.coordinate = driverLocation
+        driverAnno.title = "Your Driver"
+        map.addAnnotation(driverAnno)
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let coord = manager.location?.coordinate {
             let center = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
             userLocation = center
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-            map.setRegion(region, animated: true)
-            map.removeAnnotations(map.annotations)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = center
-            annotation.title = "Your Location"
-            map.addAnnotation(annotation)
+            
+            if uberHasBeenCalled {
+                displayDriverAndRider()
+            } else {
+                let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+                map.setRegion(region, animated: true)
+                map.removeAnnotations(map.annotations)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = center
+                annotation.title = "Your Location"
+                map.addAnnotation(annotation)
+            }
         }
     }
     

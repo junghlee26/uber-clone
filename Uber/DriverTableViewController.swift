@@ -13,7 +13,7 @@ import MapKit
 
 class DriverTableViewController: UITableViewController, CLLocationManagerDelegate {
 
-    var rideRequest : [FIRDataSnapshot] = []
+    var rideRequests : [FIRDataSnapshot] = []
     var locationManager = CLLocationManager()
     var driverLocation = CLLocationCoordinate2D()
     
@@ -31,7 +31,7 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
                     let driverLon = rideRequestDictionary["driverLon"] as? Double {
                     
                 } else {
-                    self.rideRequest.append(snapshot)
+                    self.rideRequests.append(snapshot)
                     self.tableView.reloadData()
                 }
             }
@@ -53,13 +53,13 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return rideRequest.count
+        return rideRequests.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rideRequestCell", for: indexPath)
         
-        let snapshot = rideRequest[indexPath.row]
+        let snapshot = rideRequests[indexPath.row]
          if let rideRequestDictionary = snapshot.value as? [String:AnyObject] {
             if let email = rideRequestDictionary["email"] as? String {
                 if let lat = rideRequestDictionary["lat"] as? Double,
@@ -80,7 +80,7 @@ class DriverTableViewController: UITableViewController, CLLocationManagerDelegat
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let snapshot = rideRequest[indexPath.row]
+        let snapshot = rideRequests[indexPath.row]
         performSegue(withIdentifier: "acceptSegue", sender: snapshot)
     }
 
