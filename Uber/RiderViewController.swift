@@ -42,6 +42,17 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
                         self.driverLocation = CLLocationCoordinate2D(latitude: driverLat, longitude: driverLon)
                         self.driverOnTheWay = true
                         self.displayDriverAndRider()
+                        
+                        FIRDatabase.database().reference().child("RideRequests").queryOrdered(byChild: "email").queryEqual(toValue: email).observe(.childChanged) { (snapshot) in
+                            if let rideRequestDictionary = snapshot.value as? [String:AnyObject] {
+                                if let driverNewLat = rideRequestDictionary["driverLat"] as? Double,
+                                    let driverNewLon = rideRequestDictionary["driverLon"] as? Double {
+                                    self.driverLocation = CLLocationCoordinate2D(latitude: driverNewLat, longitude: driverNewLon)
+                                    self.displayDriverAndRider()
+                                }
+                            }
+                        }
+                    
                     }
                 }
             }
@@ -56,8 +67,8 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
         callUberButton.setTitle("Your Uber driver is \(roundedDistance)km away.", for: .normal)
         map.removeAnnotations(map.annotations)
         
-        let latDelta = abs(driverLocation.latitude - userLocation.latitude) / 10000
-        let lonDelta = abs(driverLocation.longitude - userLocation.latitude) / 10000 
+        let latDelta = abs(driverLocation.latitude - userLocation.latitude) * 2
+        let lonDelta = abs(driverLocation.longitude - userLocation.latitude) * 2
         let region = MKCoordinateRegion(center: userLocation, span: MKCoordinateSpan(latitudeDelta: latDelta, longitudeDelta: lonDelta))
         map.setRegion(region, animated: true)
         
@@ -79,6 +90,7 @@ class RiderViewController: UIViewController, CLLocationManagerDelegate {
             
             if uberHasBeenCalled {
                 displayDriverAndRider()
+                
             } else {
                 let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
                 map.setRegion(region, animated: true)
